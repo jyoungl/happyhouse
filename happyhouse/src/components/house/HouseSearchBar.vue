@@ -34,13 +34,14 @@
       </b-col>
     </b-row>
     <b-row class="mt-4 mb-4 text-center">
-      <b-col class="sm-4"> </b-col>
+      <b-col class="sm-4"> <year-slider /></b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
+import YearSlider from "@/components/house/YearSlider.vue";
 /*
   namespaced: true를 사용했기 때문에 선언해줍니다.
   index.js 에서 modules 객체의 '키' 이름입니다.
@@ -62,6 +63,9 @@ export default {
       dongCode: null,
       years: [],
     };
+  },
+  components: {
+    YearSlider,
   },
   computed: {
     ...mapState(houseStore, ["sidos", "guguns", "houses", "dongs"]),
