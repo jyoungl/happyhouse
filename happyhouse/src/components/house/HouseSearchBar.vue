@@ -34,7 +34,7 @@
       </b-col>
     </b-row>
     <b-row class="mt-4 mb-4 text-center">
-      <b-col class="sm-4"> <year-slider /></b-col>
+      <b-col class="sm-4"> <year-slider :dongCode="dongCode" /></b-col>
     </b-row>
   </b-container>
 </template>

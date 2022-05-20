@@ -1,6 +1,6 @@
 <template>
   <v-card flat color="transparent">
-    <v-subheader>Min and max range slider</v-subheader>
+    <v-subheader>거래년도 범위</v-subheader>
 
     <v-card-text>
       <v-row>
@@ -11,6 +11,7 @@
             :min="min"
             hide-details
             class="align-center"
+            @change="searchByYear"
           >
             <template v-slot:prepend>
               <v-text-field
@@ -42,13 +43,38 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
+const houseStore = "houseStore";
+
 export default {
+  name: "YearSlider",
+  props: {
+    dongCode: String,
+  },
   data() {
     return {
-      min: -50,
-      max: 90,
+      min: 2000,
+      max: 2023,
       range: [-20, 70],
     };
+  },
+  computed: {
+    ...mapState(houseStore, ["houses"]),
+    // houses() {
+    //   return this.$store.state.houses;
+    // },
+  },
+  methods: {
+    ...mapActions(houseStore, ["getHouseListByYear"]),
+    searchByYear() {
+      let send = {
+        dongCode: this.dongCode,
+        maxyear: this.range[1],
+        minyear: this.range[0],
+      };
+      if (this.dongCode) this.getHouseListByYear(send);
+    },
   },
 };
 </script>

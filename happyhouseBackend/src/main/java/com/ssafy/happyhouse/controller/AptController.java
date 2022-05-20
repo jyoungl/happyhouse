@@ -54,8 +54,8 @@ public class AptController {
 	}
 	
 	@GetMapping("/aptByDate")
-	public ResponseEntity<List<HouseInfo>> aptByDate(@RequestParam("dong") String dong, @RequestParam("year") String year, @RequestParam("month") String month) throws Exception {
-		return new ResponseEntity<List<HouseInfo>>(aptService.getAptInDate(dong, year, month), HttpStatus.OK);
+	public ResponseEntity<List<HouseInfo>> aptByDate(@RequestParam("dong") String dong, @RequestParam("minyear") String minyear, @RequestParam("maxyear") String maxyear) throws Exception {
+		return new ResponseEntity<List<HouseInfo>>(aptService.getAptInDate(dong, minyear, maxyear), HttpStatus.OK);
 	}
 	
 }
