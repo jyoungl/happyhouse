@@ -4,6 +4,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 import memberStore from "@/store/modules/memberStore.js";
+import houseStore from "@/store/modules/houseStore.js";
 
 export default new Vuex.Store({
   state: {},
@@ -12,5 +13,6 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     memberStore,
+    houseStore,
   },
 });
