@@ -22,6 +22,12 @@
               Q&A</router-link
             ></b-nav-item
           >
+          <b-nav-item href="#"
+            ><router-link :to="{ name: 'house' }" class="link"
+              ><b-icon icon="journal" font-scale="1.5"></b-icon> 아파트
+              정보</router-link
+            ></b-nav-item
+          >
         </b-navbar-nav>
 
         <!-- user -->

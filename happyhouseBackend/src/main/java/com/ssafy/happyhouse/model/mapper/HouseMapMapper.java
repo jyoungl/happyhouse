@@ -18,7 +18,7 @@ public interface HouseMapMapper {
 	List<SidoGugunCode> getGugunInSido(String sido) throws SQLException;
 	List<HouseInfo> getDongInGugun(String gugun) throws SQLException;
 	List<HouseInfo> getAptInDong(String dong) throws SQLException;
-	List<HouseInfo> getAptInDate(@Param("dong") String dong,@Param("year") String year,@Param("month") String month) throws SQLException;
+	List<HouseInfo> getAptInDate(@Param("dong") String dong,@Param("minyear") String minyear,@Param("maxyear") String maxyear) throws SQLException;
 	List<Commercial> getShopInDong(String dong) throws SQLException;
 	List<Commercial> getDongInGugunByShop(String gugun) throws SQLException;
 	List<Subway> getSubway(String dong) throws SQLException;

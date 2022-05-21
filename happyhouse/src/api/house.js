@@ -19,4 +19,8 @@ function houseList(params, success, fail) {
   api.get(`apt`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, houseList, dongList };
+function houseListByYear(params, success, fail) {
+  api.get(`aptByDate`, { params: params }).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, houseList, dongList, houseListByYear };

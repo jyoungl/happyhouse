@@ -14,7 +14,7 @@ public interface AptService {
 	List<SidoGugunCode> getGugunInSido(String sido) throws Exception;
 	List<HouseInfo> getDongInGugun(String gugun) throws Exception;
 	List<HouseInfo> getAptInDong(String dong) throws Exception;
-	List<HouseInfo> getAptInDate(String dong, String year, String month) throws Exception;
+	List<HouseInfo> getAptInDate(String dong, String minyear, String maxyear) throws Exception;
 	List<Commercial> getShopInDong(String dong) throws Exception;
 	List<Commercial> getDongInGugunByShop(String gugun) throws Exception;
 }

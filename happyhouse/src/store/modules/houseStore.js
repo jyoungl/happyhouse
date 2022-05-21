@@ -1,4 +1,10 @@
-import { sidoList, gugunList, houseList, dongList } from "@/api/house.js";
+import {
+  sidoList,
+  gugunList,
+  houseList,
+  dongList,
+  houseListByYear,
+} from "@/api/house.js";
 
 const houseStore = {
   namespaced: true,
@@ -98,6 +104,28 @@ const houseStore = {
         dong: dongCode,
       };
       houseList(
+        params,
+        ({ data }) => {
+          //   console.log(response.data.response.body.items.item);
+          commit("SET_HOUSE_LIST", data);
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
+    },
+    getHouseListByYear: ({ commit }, { dongCode, maxyear, minyear }) => {
+      // vue cli enviroment variables 검색
+      //.env.local file 생성.
+      // 반드시 VUE_APP으로 시작해야 한다.
+      //   const SERVICE_KEY =
+      //     "9Xo0vlglWcOBGUDxH8PPbuKnlBwbWU6aO7%2Bk3FV4baF9GXok1yxIEF%2BIwr2%2B%2F%2F4oVLT8bekKU%2Bk9ztkJO0wsBw%3D%3D";
+      const params = {
+        dong: dongCode,
+        maxyear: maxyear,
+        minyear: minyear,
+      };
+      houseListByYear(
         params,
         ({ data }) => {
           //   console.log(response.data.response.body.items.item);
