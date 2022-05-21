@@ -1,12 +1,15 @@
 import jwt_decode from "jwt-decode";
 import { login } from "@/api/user.js";
 import { findById } from "../../api/user";
+import { registerMember } from "@/api/user.js";
+import { idCheck } from "@/api/user.js";
 
 const memberStore = {
   namespaced: true,
   state: {
     isLogin: false,
     isLoginError: false,
+    idckstate: false,
     userInfo: null,
   },
   getters: {
@@ -28,6 +31,7 @@ const memberStore = {
   },
   actions: {
     async userConfirm({ commit }, user) {
+      //console.log(user);
       await login(
         user,
         (response) => {
@@ -42,7 +46,7 @@ const memberStore = {
           }
         },
         // eslint-disable-next-line
-        () => { },
+        () => { consol.elog("store fail") },
       );
     },
     getUserInfo({ commit }, token) {
@@ -58,6 +62,40 @@ const memberStore = {
         },
         (error) => {
           console.log(error);
+        },
+      );
+    },
+    setRegister({ commit }, user) {
+      registerMember(
+        user,
+        (response) => {
+          if (response.data === "success") {
+            commit("SET_USER_INFO", user);
+          } else {
+            console.log("회원가입 실패!!");
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
+    },
+    checkuserId({ commit }, user) {
+      idCheck(
+        user,
+        (response) => {
+          if (response.data === "success") {
+            console.log(response.data);
+            console.log("ID 중복");
+            commit("SET_ID_CHECK_SUCCESS", user);
+          } else {
+            console.log("ID 사용가능");
+            commit("SET_ID_CHECK_FAIL", user);
+          }
+        },
+        (error) => {
+          console.log(error);
+          console.log("에러발생");
         },
       );
     },

@@ -38,10 +38,8 @@
             </b-row>
             <b-row>
               <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">가입일</b-col
-              ><b-col cols="4" align-self="start">{{
-                userInfo.joindate
-              }}</b-col>
+              <b-col cols="2" align-self="end">휴대폰</b-col
+              ><b-col cols="4" align-self="start">{{ userInfo.phone }}</b-col>
               <b-col cols="2"></b-col>
             </b-row>
           </b-container>

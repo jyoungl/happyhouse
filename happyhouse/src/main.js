@@ -16,8 +16,16 @@ Vue.use(IconsPlugin);
 
 Vue.config.productionTip = false;
 
+import memberStore from "./store/modules/memberStore";
+
 new Vue({
   router,
   store,
+  async beforeCreate() {
+    let token = sessionStorage.getItem("access-token");
+    if (memberStore.state.userInfo == null && token) {
+      await memberStore.dispatch("getUserInfo", token);
+    }
+  },
   render: (h) => h(App),
 }).$mount("#app");
