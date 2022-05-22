@@ -1,10 +1,17 @@
 <template>
   <b-container v-if="houses && houses.length != 0" class="bv-example-row mt-3">
     <house-list-item
-      v-for="(house, index) in houses"
+      v-for="(house, index) in housesperpage"
       :key="index"
       :house="house"
     />
+    <div class="overflow-auto">
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="houses.length"
+        :per-page="6"
+      ></b-pagination>
+    </div>
   </b-container>
   <b-container v-else class="bv-example-row mt-3">
     <b-row>
@@ -25,7 +32,10 @@ export default {
     HouseListItem,
   },
   data() {
-    return {};
+    return {
+      currentPage: 1,
+      housesperpage: [],
+    };
   },
   computed: {
     ...mapState(houseStore, ["houses"]),
@@ -33,6 +43,36 @@ export default {
     //   return this.$store.state.houses;
     // },
   },
+  watch: {
+    houses() {
+      this.housesperpage = [];
+      for (let i = 1; i <= 5; i++) {
+        if (this.houses[i - 1]) {
+          this.housesperpage.push(this.houses[i - 1]);
+        }
+      }
+    },
+    currentPage() {
+      const pagesize = 5,
+        startpage = (this.currentPage - 1) * pagesize + 1,
+        endpage = this.currentPage * pagesize + 1;
+      this.housesperpage = [];
+      if (this.currentPage > 1) {
+        for (let i = startpage; i < endpage; i++) {
+          if (this.houses[i - 1]) {
+            this.housesperpage.push(this.houses[i - 1]);
+          }
+        }
+      } else {
+        for (let i = 1; i <= 5; i++) {
+          if (this.houses[i - 1]) {
+            this.housesperpage.push(this.houses[i - 1]);
+          }
+        }
+      }
+    },
+  },
+  methods: {},
 };
 </script>
 

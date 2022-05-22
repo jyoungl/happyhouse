@@ -33,7 +33,10 @@
         ></b-form-select>
       </b-col>
     </b-row>
-    <b-row class="mt-4 mb-4 text-center">
+    <b-row>
+      <b-form-checkbox v-model="checked">거래년도로 검색</b-form-checkbox>
+    </b-row>
+    <b-row class="mt-4 mb-4 text-center" v-if="checked">
       <b-col class="sm-4"> <year-slider :dongCode="dongCode" /></b-col>
     </b-row>
   </b-container>
@@ -62,6 +65,7 @@ export default {
       gugunCode: null,
       dongCode: null,
       years: [],
+      checked: false,
     };
   },
   components: {

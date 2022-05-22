@@ -8,7 +8,7 @@
 
 <script>
 import { mapState } from "vuex";
-
+import axios from "axios";
 const houseStore = "houseStore";
 
 export default {
@@ -17,6 +17,8 @@ export default {
     return {
       map: "",
       markers: [],
+      subways: [],
+      subwayMarkers: [],
     };
   },
   computed: {
@@ -27,11 +29,16 @@ export default {
   },
   watch: {
     house() {
-      this.moveMap(this.house);
+      this.moveMap(this.house.lat, this.house.lng);
     },
     houses() {
-      this.initMap(this.houses[0]);
-      this.displayMarker();
+      if (this.houses.length > 0) {
+        this.initMap(this.houses[0].lat, this.houses[0].lng);
+        this.displayMarkerSubway();
+        this.displayMarker();
+      } else {
+        this.moveMap(37.5643819, 126.9756308);
+      }
     },
   },
   mounted() {
@@ -43,22 +50,22 @@ export default {
     document.head.appendChild(script);
   },
   methods: {
-    initMap(house) {
+    initMap(houselat, houselng) {
       const container = document.getElementById("map");
       const options = {
-        center: new kakao.maps.LatLng(house.lat, house.lng),
+        center: new kakao.maps.LatLng(houselat, houselng),
         level: 5,
       };
       //지도 객체를 등록합니다.
       //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
       this.map = new kakao.maps.Map(container, options);
     },
-    moveMap(house) {
-      var moveLatLon = new kakao.maps.LatLng(house.lat, house.lng);
+    moveMap(houselat, houselng) {
+      var moveLatLon = new kakao.maps.LatLng(houselat, houselng);
       if (this.map) {
         this.map.panTo(moveLatLon);
       } else {
-        this.initMap(house);
+        this.initMap(houselat, houselng);
       }
     },
     displayMarker() {
@@ -75,7 +82,7 @@ export default {
       );
 
       var imageSrc = require("@/assets/apticon.png"), // 마커이미지의 주소입니다
-        imageSize = new kakao.maps.Size(50, 55), // 마커이미지의 크기입니다
+        imageSize = new kakao.maps.Size(50), // 마커이미지의 크기입니다
         imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       var markerImage = new kakao.maps.MarkerImage(
         imageSrc,
@@ -99,6 +106,44 @@ export default {
 
         this.map.setBounds(bounds);
       }
+    },
+    displayMarkerSubway() {
+      axios
+        .get("http://localhost:9999/subway?dong=0")
+        .then((response) => {
+          this.subways = response.data;
+          const markerPositions = [];
+
+          this.subways.forEach((swbway) => {
+            markerPositions.push([swbway.lat, swbway.lng]);
+          });
+
+          const positions = markerPositions.map(
+            (position) => new kakao.maps.LatLng(...position),
+          );
+
+          var imageSrc = require("@/assets/subwayicon.png"), // 마커이미지의 주소입니다
+            imageSize = new kakao.maps.Size(50, 55), // 마커이미지의 크기입니다
+            imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          var markerImage = new kakao.maps.MarkerImage(
+            imageSrc,
+            imageSize,
+            imageOption,
+          );
+          if (positions.length > 0) {
+            this.subwayMarkers = positions.map(
+              (position) =>
+                new kakao.maps.Marker({
+                  map: this.map,
+                  position,
+                  image: markerImage,
+                }),
+            );
+          }
+        })
+        .catch((error) => {
+          console.dir(error);
+        });
     },
   },
 };

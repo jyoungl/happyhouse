@@ -50,6 +50,9 @@ const houseStore = {
     SET_DETAIL_HOUSE: (state, house) => {
       state.house = house;
     },
+    CLEAR_DETAIL_HOUSE: (state) => {
+      state.house = null;
+    },
   },
 
   actions: {

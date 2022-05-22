@@ -1,15 +1,13 @@
 +
 <template>
   <b-container v-if="house" class="bv-example-row">
+    <b-row class="m-2">
+      <b-button class="btn" @click="this.CLEAR_DETAIL_HOUSE">X</b-button>
+    </b-row>
     <b-row>
       <b-col
         ><h3>{{ house.aptName }}</h3></b-col
       >
-    </b-row>
-    <b-row class="mb-2 mt-1">
-      <b-col
-        ><b-img :src="require('@/assets/apt.png')" fluid-grow></b-img
-      ></b-col>
     </b-row>
     <b-row>
       <b-col>
@@ -47,11 +45,25 @@
         >
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        <b-alert show variant="danger"
+          >가까운 지하철 역 : {{ house.subwayName }}역</b-alert
+        >
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-alert show variant="danger"
+          >역 까지의 거리 : {{ house.subwayDistance }}</b-alert
+        >
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 const houseStore = "houseStore";
 
@@ -62,6 +74,9 @@ export default {
     // house() {
     //   return this.$store.state.house;
     // },
+  },
+  methods: {
+    ...mapMutations(houseStore, ["CLEAR_DETAIL_HOUSE"]),
   },
   filters: {
     price(value) {
