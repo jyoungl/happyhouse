@@ -82,8 +82,8 @@ public class AptServiceImpl implements AptService {
 	}
 	
 	@Override
-	public List<HouseInfo> getAptInDate(String dong, String minyear, String maxyear) throws Exception {
-		return houseMapMapper.getAptInDate(dong, minyear, maxyear);
+	public List<HouseInfo> getAptInDate(String dong, String year, String month) throws Exception {
+		return houseMapMapper.getAptInDate(dong, year, month);
 	}
 	
 	@Override

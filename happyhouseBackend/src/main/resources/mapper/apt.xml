@@ -44,7 +44,7 @@
 		on left(h.dongcode,2) = left(si.sidocode,2)
 		left join guguncode gu
 		on left(h.dongcode,5) = left(gu.guguncode,5)
-		where dongCode = #{dong} AND h.aptCode in (select aptCode from housedeal where dealYear between #{minyear} AND #{maxyear})
+		where dongCode = #{dong} AND h.aptCode in (select aptCode from housedeal where dealYear = #{year}) AND h.aptCode in (select aptCode from housedeal where dealMonth = #{month})
 		order by h.aptCode
 	</select>
 	

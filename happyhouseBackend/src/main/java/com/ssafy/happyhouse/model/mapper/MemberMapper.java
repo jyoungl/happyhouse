@@ -1,5 +1,6 @@
 package com.ssafy.happyhouse.model.mapper;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -9,10 +10,10 @@ import com.ssafy.happyhouse.model.dto.User;
 
 @Mapper
 public interface MemberMapper {
-	User login(Map<String, String> map) throws Exception;
-	
+	User login(User user) throws Exception;
+	User userInfo(String userid) throws SQLException;
 	int idCheck(String checkId) throws Exception;
-	void registerMember(User user) throws Exception;
+	boolean registerMember(User user) throws Exception;
 	
 	List<User> listMember() throws Exception;
 	User getMember(String userId) throws Exception;

@@ -1,37 +1,37 @@
 package com.ssafy.happyhouse.model.dto;
 
 public class User {
-	private String userId;
-	private String password;
-	private String name;
+	private String userid;
+	private String userpwd;
+	private String username;
 	private String email;
 	private String phone;
 	
 	public User() {}
-	public User(String userId, String password, String name, String email, String phone) {
-		this.userId = userId;
-		this.password = password;
-		this.name = name;
+	public User(String userid, String password, String name, String email, String phone) {
+		this.userid = userid;
+		this.userpwd = password;
+		this.username = name;
 		this.email = email;
 		this.phone = phone;
 	}
-	public String getUserId() {
-		return userId;
+	public String getUserid() {
+		return userid;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-	public String getPassword() {
-		return password;
+	public String getUserpwd() {
+		return userpwd;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserpwd(String password) {
+		this.userpwd = password;
 	}
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String name) {
+		this.username = name;
 	}
 	public String getEmail() {
 		return email;
@@ -49,7 +49,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((userid == null) ? 0 : userid.hashCode());
 		return result;
 	}
 	
@@ -61,21 +61,21 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (userId == null) {
-			if (other.userId != null)
+		if (userid == null) {
+			if (other.userid != null)
 				return false;
-		} else if (!userId.equals(other.userId))
+		} else if (!userid.equals(other.userid))
 			return false;
 		return true;
 	}
 	
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(userId);
+		buffer.append(userid);
 		buffer.append("\t| ");
-		buffer.append(password);
+		buffer.append(userpwd);
 		buffer.append("\t| ");
-		buffer.append(name);
+		buffer.append(username);
 		buffer.append("\t| ");
 		buffer.append(email);
 		buffer.append("\t| ");
