@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.ssafy.happyhouse.model.dto.Commercial;
 import com.ssafy.happyhouse.model.dto.HouseInfo;
 import com.ssafy.happyhouse.model.dto.SidoGugunCode;
-import com.ssafy.happyhouse.model.dto.Subway;
 
 public interface AptService {
 
@@ -15,8 +14,7 @@ public interface AptService {
 	List<SidoGugunCode> getGugunInSido(String sido) throws Exception;
 	List<HouseInfo> getDongInGugun(String gugun) throws Exception;
 	List<HouseInfo> getAptInDong(String dong) throws Exception;
-	List<HouseInfo> getAptInDate(String dong, String minyear, String maxyear) throws Exception;
+	List<HouseInfo> getAptInDate(String dong, String year, String month) throws Exception;
 	List<Commercial> getShopInDong(String dong) throws Exception;
 	List<Commercial> getDongInGugunByShop(String gugun) throws Exception;
-	List<Subway> getSubway(String dong) throws Exception;
 }

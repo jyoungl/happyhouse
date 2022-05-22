@@ -207,16 +207,16 @@ public class MemberController {
 //		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 //	}
 //
-//	@ApiOperation(value = "회원 탈퇴", notes = "유저 아이디에 해당하는 회원을 탈퇴한다.", response = String.class)
-//	@DeleteMapping("/{userid}")
-//	public ResponseEntity<String> deleteMember(
-//			@PathVariable("userid") @ApiParam(value = "삭제할 유저의 아이디.", required = true) String userid) throws Exception {
-//		logger.info("deleteMember - 호출");
-//		if (memberService.deleteMember(userid)) {
-//			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-//		}
-//		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-//	}
+	@ApiOperation(value = "회원 탈퇴", notes = "유저 아이디에 해당하는 회원을 탈퇴한다.", response = String.class)
+	@DeleteMapping("/del/{userid}")
+	public ResponseEntity<String> deleteMember(
+			@PathVariable("userid") @ApiParam(value = "삭제할 유저의 아이디.", required = true) String userid) throws Exception {
+		logger.info("deleteMember - 호출");
+		if (memberService.deleteMember(userid)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
 //
 //	@ApiOperation(value = "회원 가입", notes = "새로운 회원 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 //	@PostMapping
@@ -230,15 +230,15 @@ public class MemberController {
 //	}
 //
 //	@ApiOperation(value = "회원 정보 수정", notes = "회원 정보를 수정한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-//	@PutMapping
-//	public ResponseEntity<String> updateMember(
-//			@RequestBody @ApiParam(value = "수정할 글정보.", required = true) User memberDto) throws Exception {
-//		logger.info("updateMember - 호출");
-//		if (memberService.updateMember(memberDto)) {
-//			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-//		}
-//		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
-//	}
+	@PutMapping("/modify")
+	public ResponseEntity<String> updateMember(
+			@RequestBody @ApiParam(value = "수정할 글정보.", required = true) User memberDto) throws Exception {
+		logger.info("updateMember - 호출");
+		if (memberService.updateMember(memberDto)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+	}
 //
 //	@ApiOperation(value = "ID 중복체크", notes = "기존에 가입한 ID인지 체크한다.", response = String.class)
 //	@GetMapping("/{userid}")

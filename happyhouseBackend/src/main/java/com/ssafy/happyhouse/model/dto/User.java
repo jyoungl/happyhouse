@@ -3,7 +3,7 @@ package com.ssafy.happyhouse.model.dto;
 public class User {
 	private String userid;
 	private String userpwd;
-	private String username;
+	private String name;
 	private String email;
 	private String phone;
 	
@@ -11,7 +11,7 @@ public class User {
 	public User(String userid, String password, String name, String email, String phone) {
 		this.userid = userid;
 		this.userpwd = password;
-		this.username = name;
+		this.name = name;
 		this.email = email;
 		this.phone = phone;
 	}
@@ -28,10 +28,10 @@ public class User {
 		this.userpwd = password;
 	}
 	public String getUsername() {
-		return username;
+		return name;
 	}
 	public void setUsername(String name) {
-		this.username = name;
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -75,7 +75,7 @@ public class User {
 		buffer.append("\t| ");
 		buffer.append(userpwd);
 		buffer.append("\t| ");
-		buffer.append(username);
+		buffer.append(name);
 		buffer.append("\t| ");
 		buffer.append(email);
 		buffer.append("\t| ");

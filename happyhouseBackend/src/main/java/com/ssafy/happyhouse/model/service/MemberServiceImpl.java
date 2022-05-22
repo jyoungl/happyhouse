@@ -56,13 +56,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void updateMember(User user) throws Exception {
-		memberMapper.updateMember(user);
+	public boolean updateMember(User memberDto) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).updateMember(memberDto) == 1;
 	}
 
 	@Override
-	public void deleteMember(String userId) throws Exception {
-		memberMapper.deleteMember(userId);
+	public boolean deleteMember(String userId) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).deleteMember(userId);
 	}
 	
 }

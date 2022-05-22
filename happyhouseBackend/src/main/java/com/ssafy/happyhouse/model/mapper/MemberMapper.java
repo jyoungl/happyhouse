@@ -17,6 +17,6 @@ public interface MemberMapper {
 	
 	List<User> listMember() throws Exception;
 	User getMember(String userId) throws Exception;
-	void updateMember(User user) throws Exception;
-	void deleteMember(String userId) throws Exception;
+	int updateMember(User user) throws SQLException;
+	boolean deleteMember(String userId) throws Exception;
 }

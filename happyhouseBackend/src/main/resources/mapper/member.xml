@@ -41,18 +41,22 @@
 	
 	<update id="updateMember" parameterType="User">
 		update user
-		<trim prefix="set" suffixOverrides=",">
+		<!-- <trim prefix="set" suffixOverrides=",">
 			<if test="password != null">password = #{password},</if>
 			<if test="name != null">name = #{name},</if>
 			<if test="email != null">email = #{email},</if>
 			<if test="phone != null">phone = #{phone},</if>
-		</trim>
-		where userid = #{userId}
+		</trim> -->
+		set name = #{username}, 
+			password = #{userpwd},
+			email = #{email},
+			phone = #{phone}
+		where userid = #{userid}
 	</update>
 	
 	<delete id="deleteMember" parameterType="String">
 		delete from user
-		where userid = #{userId}
+		where userid = #{userid}
 	</delete>
 	
 </mapper>

@@ -13,6 +13,6 @@ public interface MemberService {
 	
 	List<User> listMember() throws Exception;
 	User getMember(String userId) throws Exception;
-	void updateMember(User user) throws Exception;
-	void deleteMember(String userId) throws Exception;
+	boolean updateMember(User user) throws Exception;
+	boolean deleteMember(String userId) throws Exception;
 }
