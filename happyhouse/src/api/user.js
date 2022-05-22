@@ -29,7 +29,7 @@ async function deleteNotice(userid, success, fail) {
 }
 
 async function deleteMember(userid, success, fail) {
-  await api.delete(`/user/${userid}`).then(success).catch(fail);
+  await api.delete(`/user/del/${userid}`).then(success).catch(fail);
 }
 
 async function registerMember(user, success, fail) {
@@ -41,7 +41,7 @@ async function registerMember(user, success, fail) {
 }
 
 async function updateMember(user, success, fail) {
-  await api.put(`/user`, JSON.stringify(user)).then(success).catch(fail);
+  await api.put(`/user/modify`, JSON.stringify(user)).then(success).catch(fail);
 }
 
 async function idCheck(userid, success, fail) {

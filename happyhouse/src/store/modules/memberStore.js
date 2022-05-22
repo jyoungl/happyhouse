@@ -1,8 +1,9 @@
 import jwt_decode from "jwt-decode";
-import { login } from "@/api/user.js";
+import { deleteMember, login } from "@/api/user.js";
 import { findById } from "../../api/user";
 import { registerMember } from "@/api/user.js";
 import { idCheck } from "@/api/user.js";
+import { updateMember } from "@/api/user.js";
 
 const memberStore = {
   namespaced: true,
@@ -97,6 +98,37 @@ const memberStore = {
         (error) => {
           console.log(error);
           console.log("에러발생");
+        },
+      );
+    },
+    setUserInfo({ commit }, user) {
+      updateMember(
+        user,
+        (response) => {
+          console.log(response);
+          if (response.data === "success") {
+            commit("SET_USER_INFO", user);
+          } else {
+            console.log("수정 실패");
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
+    },
+    deleteUser({ commit }, user) {
+      deleteMember(
+        user,
+        (response) => {
+          if (response.data === "success") {
+            commit("SET_USER_INFO", user);
+          } else {
+            console.log("탈퇴 실패");
+          }
+        },
+        (error) => {
+          console.log(error);
         },
       );
     },
