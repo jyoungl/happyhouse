@@ -3,6 +3,7 @@ import { apiInstance } from "./index.js";
 const api = apiInstance();
 
 async function login(user, success, fail) {
+  console.log(JSON.stringify(user));
   await api.post(`/user/login`, JSON.stringify(user)).then(success).catch(fail);
 }
 
@@ -32,6 +33,7 @@ async function deleteMember(userid, success, fail) {
 }
 
 async function registerMember(user, success, fail) {
+  console.log(JSON.stringify(user));
   await api
     .post(`/user/register`, JSON.stringify(user))
     .then(success)
