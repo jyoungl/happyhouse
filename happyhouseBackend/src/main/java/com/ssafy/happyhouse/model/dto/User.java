@@ -6,14 +6,38 @@ public class User {
 	private String name;
 	private String email;
 	private String phone;
+	private String dongCode;
+	private String jibun;
 	
 	public User() {}
-	public User(String userid, String password, String name, String email, String phone) {
+	public User(String userid, String password, String name, String email, String phone, String dongCode, String jibun) {
 		this.userid = userid;
 		this.userpwd = password;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
+		this.dongCode = dongCode;
+		this.jibun = jibun;
+	}
+	
+	
+	public String getJibun() {
+		return jibun;
+	}
+	public void setJibun(String jibun) {
+		this.jibun = jibun;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDongCode() {
+		return dongCode;
+	}
+	public void setDongCode(String dongCode) {
+		this.dongCode = dongCode;
 	}
 	public String getUserid() {
 		return userid;

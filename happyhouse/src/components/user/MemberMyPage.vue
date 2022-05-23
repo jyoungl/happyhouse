@@ -42,6 +42,12 @@
               ><b-col cols="4" align-self="start">{{ userInfo.phone }}</b-col>
               <b-col cols="2"></b-col>
             </b-row>
+            <b-row>
+              <b-col cols="2"></b-col>
+              <b-col cols="2" align-self="end">관심지역</b-col
+              ><b-col cols="4" align-self="start">{{ userInfo.jibun }}</b-col>
+              <b-col cols="2"></b-col>
+            </b-row>
           </b-container>
           <hr class="my-4" />
 
