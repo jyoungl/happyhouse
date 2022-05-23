@@ -37,6 +37,14 @@
     </b-row>
     <b-row>
       <b-col>
+        <b-alert show variant="warning"
+          >거래년월 : {{ house.recentYear }}년
+          {{ house.recentMonth }}월</b-alert
+        >
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
         <b-alert show variant="danger"
           >거래금액 :
           {{

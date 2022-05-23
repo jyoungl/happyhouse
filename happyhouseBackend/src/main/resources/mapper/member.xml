@@ -11,8 +11,8 @@
 	</select>
 
 	<insert id="registerMember" parameterType="User">
-		insert into user (userid, name, password, email, phone)
-		values (#{userid}, #{username}, #{userpwd}, #{email}, #{phone})
+		insert into user (userid, name, password, email, phone, dongCode, jibun)
+		values (#{userid}, #{username}, #{userpwd}, #{email}, #{phone}, #{dongCode}, #{jibun})
 	</insert>
 
 	<select id="login" parameterType="User" resultType="User">
@@ -50,7 +50,9 @@
 		set name = #{username}, 
 			password = #{userpwd},
 			email = #{email},
-			phone = #{phone}
+			phone = #{phone},
+			dongCode = #{dongCode},
+			jibun = #{jibun}
 		where userid = #{userid}
 	</update>
 	

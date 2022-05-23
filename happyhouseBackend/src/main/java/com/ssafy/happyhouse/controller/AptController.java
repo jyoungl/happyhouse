@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.HouseInfo;
 import com.ssafy.happyhouse.model.dto.SidoGugunCode;
+import com.ssafy.happyhouse.model.dto.Subway;
 import com.ssafy.happyhouse.model.service.AptService;
 
 
@@ -54,8 +55,12 @@ public class AptController {
 	}
 	
 	@GetMapping("/aptByDate")
-	public ResponseEntity<List<HouseInfo>> aptByDate(@RequestParam("dong") String dong, @RequestParam("year") String year, @RequestParam("month") String month) throws Exception {
-		return new ResponseEntity<List<HouseInfo>>(aptService.getAptInDate(dong, year, month), HttpStatus.OK);
+	public ResponseEntity<List<HouseInfo>> aptByDate(@RequestParam("dong") String dong, @RequestParam("minyear") String minyear, @RequestParam("maxyear") String maxyear) throws Exception {
+		return new ResponseEntity<List<HouseInfo>>(aptService.getAptInDate(dong, minyear, maxyear), HttpStatus.OK);
 	}
 	
+	@GetMapping("/subway")
+	public ResponseEntity<List<Subway>> subway(@RequestParam("dong") String dong) throws Exception {
+		return new ResponseEntity<List<Subway>>(aptService.getSubway(dong), HttpStatus.OK);
+	}
 }
