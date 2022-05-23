@@ -33,7 +33,7 @@
         >
           <b-card-body class="text-left">
             Q.
-            <div v-html="message"></div>
+            <div>{{ article.content | formcontent }}</div>
           </b-card-body>
           <hr />
           <b-card-body class="text-left">
@@ -93,8 +93,8 @@ export default {
 
     message() {
       console.log(this.article);
-      if (this.article.content)
-        return this.article.content.split("\n").join("<br>");
+      if (this.article.content) this.contentf();
+      //this.article.content = this.article.content.split("\n").join("<br>");
       return "";
     },
     answer() {
@@ -109,6 +109,9 @@ export default {
     });
   },
   methods: {
+    contentf() {
+      this.article.content = this.article.content.split("\n").join("<br>");
+    },
     listArticle() {
       this.$router.push({ name: "boardList" });
     },
@@ -162,11 +165,12 @@ export default {
       }
     },
   },
-  // filters: {
-  //   dateFormat(regtime) {
-  //     return moment(new Date(regtime)).format("YY.MM.DD hh:mm:ss");
-  //   },
-  // },
+  filters: {
+    formcontent: function (value) {
+      //맨 앞의 하나만 필터링됨.. 같은 욕설 여러개 있으면 여러개 다 필터링이 안됨 근데 while문으로 contains, search 도 안됨 어카지????
+      return value.replace("띠발", "**").replace("지랄", "**");
+    },
+  },
 };
 </script>
 
