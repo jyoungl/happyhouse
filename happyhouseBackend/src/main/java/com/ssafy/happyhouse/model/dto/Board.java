@@ -76,6 +76,8 @@ public class Board {
 		this.regtime = regtime;
 	}
 
+	public Board() {}
+	
 	public Board(int articleno, String userid, String subject, String content, int hit, String regtime) {
 		super();
 		this.articleno = articleno;
