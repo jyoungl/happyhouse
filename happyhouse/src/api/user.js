@@ -3,7 +3,6 @@ import { apiInstance } from "./index.js";
 const api = apiInstance();
 
 async function login(user, success, fail) {
-  console.log(JSON.stringify(user));
   await api.post(`/user/login`, JSON.stringify(user)).then(success).catch(fail);
 }
 
