@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import axios from "axios";
 const houseStore = "houseStore";
 
@@ -35,7 +35,7 @@ export default {
       if (this.houses.length > 0) {
         this.initMap(this.houses[0].lat, this.houses[0].lng);
         this.displayMarkerSubway();
-        this.displayMarker();
+        this.displayMarker(this.houses);
       } else {
         this.moveMap(37.5643819, 126.9756308);
       }
@@ -50,6 +50,8 @@ export default {
     document.head.appendChild(script);
   },
   methods: {
+    ...mapActions(houseStore, ["detailHouse"]),
+
     initMap(houselat, houselng) {
       const container = document.getElementById("map");
       const options = {
@@ -68,7 +70,7 @@ export default {
         this.initMap(houselat, houselng);
       }
     },
-    displayMarker() {
+    displayMarker(houses) {
       if (this.markers.length > 0) {
         this.markers.forEach((marker) => marker.setMap(null));
       }
@@ -89,22 +91,28 @@ export default {
         imageSize,
         imageOption,
       );
+      var mks = [];
       if (positions.length > 0) {
-        this.markers = positions.map(
-          (position) =>
-            new kakao.maps.Marker({
-              map: this.map,
-              position,
-              image: markerImage,
-            }),
-        );
-
-        const bounds = positions.reduce(
-          (bounds, latlng) => bounds.extend(latlng),
-          new kakao.maps.LatLngBounds(),
-        );
-
-        this.map.setBounds(bounds);
+        for (let i = 0, len = positions.length; i < len; i++) {
+          var marker = new kakao.maps.Marker({
+            map: this.map,
+            position: positions[i],
+            image: markerImage,
+          });
+          mks.push(marker);
+          var map = this.map;
+          kakao.maps.event.addListener(marker, "click", function () {
+            // 마커 위에 인포윈도우를 표시합니다
+            var iwContent = `<div style="width:250px; padding:5px;">${houses[i].aptName}</div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+              iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+            var infowindow = new kakao.maps.InfoWindow({
+              content: iwContent,
+              removable: iwRemoveable,
+            });
+            infowindow.open(map, mks[i]);
+            console.log(infowindow);
+          });
+        }
       }
     },
     displayMarkerSubway() {
@@ -147,6 +155,7 @@ export default {
     },
   },
 };
+// 마커에 click 이벤트를 등록합니다
 </script>
 
 <style scoped>
