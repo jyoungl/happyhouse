@@ -38,6 +38,8 @@ public class BoardServiceImpl implements BoardService {
   		str3 = str3.replace("금지어1", "**");
   		str3 = str3.replace("금지어2", "**");
   		
+		board.setAContent(str2);
+		board.setSubject(str3);
 		return boardMapper.insertBoard(board) == 1;
 	}
 
