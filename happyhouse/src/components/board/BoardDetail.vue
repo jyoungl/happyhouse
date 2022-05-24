@@ -9,7 +9,7 @@
       <b-col class="text-left">
         <b-button variant="outline-primary" @click="listArticle">목록</b-button>
       </b-col>
-      <b-col class="text-right" v-if="userInfo">
+      <b-col class="text-right" v-if="userInfo.userid == article.userid">
         <b-button
           variant="outline-info"
           size="sm"
@@ -33,7 +33,7 @@
         >
           <b-card-body class="text-left">
             Q.
-            <div>{{ article.content | formcontent }}</div>
+            <div>{{ article.content }}</div>
           </b-card-body>
           <hr />
           <b-card-body class="text-left">
@@ -165,12 +165,12 @@ export default {
       }
     },
   },
-  filters: {
-    formcontent: function (value) {
-      //맨 앞의 하나만 필터링됨.. 같은 욕설 여러개 있으면 여러개 다 필터링이 안됨 근데 while문으로 contains, search 도 안됨 어카지????
-      return value.replace("띠발", "**").replace("지랄", "**");
-    },
-  },
+  // filters: {
+  //   formcontent: function (value) {
+  //     //맨 앞의 하나만 필터링됨.. 같은 욕설 여러개 있으면 여러개 다 필터링이 안됨 근데 while문으로 contains, search 도 안됨 어카지????
+  //     return value.replace("띠발", "**").replace("지랄", "**");
+  //   },
+  // },
 };
 </script>
 

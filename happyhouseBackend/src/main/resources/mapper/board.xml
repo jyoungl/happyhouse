@@ -21,9 +21,9 @@
 	<!-- 게시글 등록 -->
 	<insert id="insertBoard" parameterType="Board">
 		insert into board(
-			subject, userid, content
+			subject, userid, content, regtime
 		) values (
-			#{subject}, #{userid}, #{content}
+			#{subject}, #{userid}, #{content}, now()
 		)
 	</insert>
 	

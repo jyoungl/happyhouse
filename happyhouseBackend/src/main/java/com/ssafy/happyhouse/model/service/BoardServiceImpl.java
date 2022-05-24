@@ -23,6 +23,12 @@ public class BoardServiceImpl implements BoardService {
     
   	@Override
 	public boolean writeBoard(Board board) {
+  		String str = board.getContent();
+  		
+  		str = str.replace("아니", "**");
+  		str = str.replace("제발", "**");
+  		board.setContent(str);
+  		
 		return boardMapper.insertBoard(board) == 1;
 	}
 

@@ -13,8 +13,7 @@
             :disabled="isUserid"
             v-model="article.userid"
             type="text"
-            required
-            placeholder="작성자 입력..."
+            :placeholder="userInfo.userid"
           ></b-form-input>
         </b-form-group>
 
@@ -61,7 +60,10 @@
 
 <script>
 import { apiInstance } from "@/api/index";
+import { mapState } from "vuex";
+
 const api = apiInstance();
+const memberStore = "memberStore";
 
 export default {
   name: "BoardInputItem",
@@ -79,6 +81,9 @@ export default {
   props: {
     type: { type: String },
   },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+  },
   created() {
     if (this.type === "modify") {
       api.get(`/board/${this.$route.params.articleno}`).then(({ data }) => {
@@ -88,8 +93,9 @@ export default {
         // this.article.content = data.article.content;
         this.article = data;
       });
-      this.isUserid = true;
     }
+    this.isUserid = true;
+    this.article.userid = this.userInfo.userid;
   },
   methods: {
     onSubmit(event) {
