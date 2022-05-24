@@ -58,6 +58,7 @@ export default {
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=d22915962877f7248fc7225edf9c16a2";
     document.head.appendChild(script);
+    this.initMap(37.5643819, 126.9756308);
   },
   methods: {
     ...mapActions(houseStore, ["detailHouse"]),

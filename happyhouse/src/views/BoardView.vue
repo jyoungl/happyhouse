@@ -1,14 +1,19 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-hotpink">
-      <b-icon icon="journals"></b-icon> Board Service
-    </h3>
+  <b-container v-if="isLogin" class="bv-example-row mt-3 text-center">
     <router-view></router-view>
+  </b-container>
+  <b-container v-else class="bv-example-row mt-3 text-center">
+    <h2>로그인해주세요!</h2>
   </b-container>
 </template>
 <script>
+import { mapState } from "vuex";
+const memberStore = "memberStore";
 export default {
   name: "BoardView",
+  computed: {
+    ...mapState(memberStore, ["isLogin", "isLoginError"]),
+  },
 };
 </script>
 <style scoped>
