@@ -34,11 +34,11 @@ public class BoardServiceImpl implements BoardService {
   		if(str2 != null) {
 	  		str2 = str2.replace("금지어1", "**");
 	  		str2 = str2.replace("금지어2", "**");
-	  		board.setAcontent(str);
+	  		board.setAcontent(str2);
   		}
   		str3 = str3.replace("금지어1", "**");
   		str3 = str3.replace("금지어2", "**");
-  		board.setSubject(str);
+  		board.setSubject(str3);
 		return boardMapper.insertBoard(board) == 1;
 	}
 
@@ -61,11 +61,11 @@ public class BoardServiceImpl implements BoardService {
   		if(str2 != null) {
 	  		str2 = str2.replace("금지어1", "**");
 	  		str2 = str2.replace("금지어2", "**");
-	  		board.setAcontent(str);
+	  		board.setAcontent(str2);
   		}
   		str3 = str3.replace("금지어1", "**");
   		str3 = str3.replace("금지어2", "**");
-  		board.setSubject(str);
+  		board.setSubject(str3);
 		return boardMapper.updateBoard(board) == 1;
 	}
 
