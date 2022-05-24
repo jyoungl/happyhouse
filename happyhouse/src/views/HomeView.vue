@@ -36,6 +36,18 @@
           />
         </template>
       </b-carousel-slide>
+
+      <b-carousel-slide>
+        <template #img>
+          <img
+            class="d-block img-fluid w-100"
+            width="1024"
+            height="400"
+            src="@/assets/happyhouse3.jpg"
+            alt="image slot"
+          />
+        </template>
+      </b-carousel-slide>
     </b-carousel>
 
     <!-- <p class="mt-4">
@@ -66,6 +78,6 @@ export default {
 
 <style scoped>
 .d-block {
-  height: 800px;
+  height: 1200px;
 }
 </style>
