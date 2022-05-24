@@ -31,15 +31,14 @@ public class BoardServiceImpl implements BoardService {
   		
   		String str2 = board.getAcontent();
   		String str3 = board.getSubject();
-  		
-  		str2 = str2.replace("금지어1", "**");
-  		str2 = str2.replace("금지어2", "**");
-  		
+  		if(str2 != null) {
+	  		str2 = str2.replace("금지어1", "**");
+	  		str2 = str2.replace("금지어2", "**");
+	  		board.setAcontent(str);
+  		}
   		str3 = str3.replace("금지어1", "**");
   		str3 = str3.replace("금지어2", "**");
-  		
-		board.setAContent(str2);
-		board.setSubject(str3);
+  		board.setSubject(str);
 		return boardMapper.insertBoard(board) == 1;
 	}
 
@@ -51,6 +50,22 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	@Transactional
 	public boolean updateBoard(Board board) {
+  		String str = board.getContent();
+  		
+  		str = str.replace("금지어1", "**");
+  		str = str.replace("금지어2", "**");
+  		board.setContent(str);
+  		
+  		String str2 = board.getAcontent();
+  		String str3 = board.getSubject();
+  		if(str2 != null) {
+	  		str2 = str2.replace("금지어1", "**");
+	  		str2 = str2.replace("금지어2", "**");
+	  		board.setAcontent(str);
+  		}
+  		str3 = str3.replace("금지어1", "**");
+  		str3 = str3.replace("금지어2", "**");
+  		board.setSubject(str);
 		return boardMapper.updateBoard(board) == 1;
 	}
 
