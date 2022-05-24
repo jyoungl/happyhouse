@@ -66,7 +66,7 @@ export default {
       const container = document.getElementById("map");
       const options = {
         center: new kakao.maps.LatLng(houselat, houselng),
-        level: 3,
+        level: 4,
       };
       //지도 객체를 등록합니다.
       //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
@@ -202,6 +202,6 @@ export default {
 <style scoped>
 #map {
   width: 100%;
-  height: 1000px;
+  height: 1220px;
 }
 </style>

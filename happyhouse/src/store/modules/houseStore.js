@@ -16,6 +16,7 @@ const houseStore = {
     houses: [],
     comms: [],
     house: null,
+    comm: null,
   },
 
   getters: {},
@@ -61,6 +62,9 @@ const houseStore = {
     SET_COMM_LIST: (state, comms) => {
       //   console.log(houses);
       state.comms = comms;
+    },
+    SET_COMM_DETAIL_HOUSE: (state, comm) => {
+      state.comm = comm;
     },
   },
 
@@ -166,6 +170,10 @@ const houseStore = {
     detailHouse: ({ commit }, house) => {
       // 나중에 house.일련번호를 이용하여 API 호출
       commit("SET_DETAIL_HOUSE", house);
+    },
+    detailComm: ({ commit }, comm) => {
+      // 나중에 house.일련번호를 이용하여 API 호출
+      commit("SET_DETAIL_HOUSE", comm);
     },
   },
 };

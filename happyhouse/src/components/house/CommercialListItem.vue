@@ -1,7 +1,7 @@
 <template>
   <b-row
     class="m-2"
-    @click="selectHouse"
+    @click="selectComm"
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"
     :class="{ 'mouse-over-bgcolor': isColor }"
@@ -20,8 +20,11 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+const houseStore = "houseStore";
 export default {
   name: "CommercialListItem",
+
   data() {
     return {
       isColor: false,
@@ -31,7 +34,10 @@ export default {
     comm: Object,
   },
   methods: {
-    selectHouse() {},
+    ...mapActions(houseStore, ["detailComm"]),
+    selectComm() {
+      this.detailComm(this.comm);
+    },
     colorChange(flag) {
       this.isColor = flag;
     },

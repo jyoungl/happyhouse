@@ -34,7 +34,7 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col
+      <b-col v-if="!memberchecked"
         ><b-form-checkbox v-model="yearchecked"
           >거래년도로 검색
         </b-form-checkbox></b-col
@@ -48,7 +48,7 @@
     <b-row class="text-center" v-if="memberchecked">
       <b-col class="sm-4">관심지역: {{ userInfo.jibun }}</b-col>
     </b-row>
-    <b-row class="mt-4 mb-4 text-center" v-if="yearchecked">
+    <b-row class="mt-4 mb-4 text-center" v-if="yearchecked && !memberchecked">
       <b-col class="sm-4"> <year-slider :dongCode="dongCode" /></b-col>
     </b-row>
   </b-container>
