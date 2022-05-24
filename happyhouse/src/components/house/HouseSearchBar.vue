@@ -134,6 +134,7 @@ export default {
       if (!this.memberchecked) {
         this.CLEAR_COMM_LIST();
       } else if (this.userInfo.dongCode) {
+        await this.getHouseList(this.userInfo.dongCode);
         await this.getCommList(this.userInfo.dongCode);
       }
     },

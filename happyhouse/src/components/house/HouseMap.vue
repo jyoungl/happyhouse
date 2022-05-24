@@ -37,6 +37,9 @@ export default {
         this.initMap(this.houses[0].lat, this.houses[0].lng);
         this.displayMarkerSubway();
         this.displayMarker(this.houses);
+        if (this.comms) {
+          this.displayMarkerComm();
+        }
       } else {
         this.moveMap(37.5643819, 126.9756308);
       }
