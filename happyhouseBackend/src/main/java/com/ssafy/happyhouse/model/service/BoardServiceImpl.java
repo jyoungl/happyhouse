@@ -25,9 +25,18 @@ public class BoardServiceImpl implements BoardService {
 	public boolean writeBoard(Board board) {
   		String str = board.getContent();
   		
-  		str = str.replace("아니", "**");
-  		str = str.replace("제발", "**");
+  		str = str.replace("금지어1", "**");
+  		str = str.replace("금지어2", "**");
   		board.setContent(str);
+  		
+  		String str2 = board.getAcontent();
+  		String str3 = board.getSubject();
+  		
+  		str2 = str2.replace("금지어1", "**");
+  		str2 = str2.replace("금지어2", "**");
+  		
+  		str3 = str3.replace("금지어1", "**");
+  		str3 = str3.replace("금지어2", "**");
   		
 		return boardMapper.insertBoard(board) == 1;
 	}
