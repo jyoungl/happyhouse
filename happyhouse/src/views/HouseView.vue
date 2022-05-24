@@ -13,6 +13,11 @@
             <house-list />
           </b-col>
         </b-row>
+        <b-row>
+          <b-col align="left" class="ml-3 bg-light">
+            <commercial-list />
+          </b-col>
+        </b-row>
       </b-col>
       <b-col cols="9">
         <house-map />
@@ -30,6 +35,7 @@ import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
 import HouseList from "@/components/house/HouseList.vue";
 import HouseDetail from "@/components/house/HouseDetail.vue";
 import HouseMap from "@/components/house/HouseMap.vue";
+import CommercialList from "@/components/house/CommercialList.vue";
 import { mapState } from "vuex";
 const houseStore = "houseStore";
 export default {
@@ -39,6 +45,7 @@ export default {
     HouseList,
     HouseDetail,
     HouseMap,
+    CommercialList,
   },
   computed: {
     ...mapState(houseStore, ["house"]),

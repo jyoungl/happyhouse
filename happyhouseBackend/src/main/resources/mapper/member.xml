@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="userInfo" parameterType="User" resultType="User">
-		select name, userid, email, phone
+		select name, userid, email, phone, jibun, dongCode
 		from user
 		where userid = #{userid}
 	</select>

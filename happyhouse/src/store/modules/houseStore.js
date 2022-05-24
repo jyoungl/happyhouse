@@ -4,6 +4,7 @@ import {
   houseList,
   dongList,
   houseListByYear,
+  commList,
 } from "@/api/house.js";
 
 const houseStore = {
@@ -13,6 +14,7 @@ const houseStore = {
     guguns: [{ value: null, text: "선택하세요" }],
     dongs: [{ value: null, text: "선택하세요" }],
     houses: [],
+    comms: [],
     house: null,
   },
 
@@ -52,6 +54,13 @@ const houseStore = {
     },
     CLEAR_DETAIL_HOUSE: (state) => {
       state.house = null;
+    },
+    CLEAR_COMM_LIST: (state) => {
+      state.comms = null;
+    },
+    SET_COMM_LIST: (state, comms) => {
+      //   console.log(houses);
+      state.comms = comms;
     },
   },
 
@@ -133,6 +142,21 @@ const houseStore = {
         ({ data }) => {
           //   console.log(response.data.response.body.items.item);
           commit("SET_HOUSE_LIST", data);
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
+    },
+    getCommList: ({ commit }, dongCode) => {
+      const params = {
+        dong: dongCode,
+      };
+      commList(
+        params,
+        ({ data }) => {
+          //   console.log(response.data.response.body.items.item);
+          commit("SET_COMM_LIST", data);
         },
         (error) => {
           console.log(error);

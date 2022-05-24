@@ -34,9 +34,21 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-form-checkbox v-model="checked">거래년도로 검색</b-form-checkbox>
+      <b-col
+        ><b-form-checkbox v-model="yearchecked"
+          >거래년도로 검색
+        </b-form-checkbox></b-col
+      >
+      <b-col v-if="isLogin">
+        <b-form-checkbox v-model="memberchecked" @change="commercialList">
+          관심지역 상권 검색</b-form-checkbox
+        ></b-col
+      >
     </b-row>
-    <b-row class="mt-4 mb-4 text-center" v-if="checked">
+    <b-row class="text-center" v-if="memberchecked">
+      <b-col class="sm-4">관심지역: {{ userInfo.jibun }}</b-col>
+    </b-row>
+    <b-row class="mt-4 mb-4 text-center" v-if="yearchecked">
       <b-col class="sm-4"> <year-slider :dongCode="dongCode" /></b-col>
     </b-row>
   </b-container>
@@ -56,6 +68,7 @@ import YearSlider from "@/components/house/YearSlider.vue";
   }
 */
 const houseStore = "houseStore";
+const memberStore = "memberStore";
 
 export default {
   name: "HouseSearchBar",
@@ -65,14 +78,16 @@ export default {
       gugunCode: null,
       dongCode: null,
       years: [],
-      checked: false,
+      yearchecked: false,
+      memberchecked: false,
     };
   },
   components: {
     YearSlider,
   },
   computed: {
-    ...mapState(houseStore, ["sidos", "guguns", "houses", "dongs"]),
+    ...mapState(houseStore, ["sidos", "guguns", "houses", "dongs", "comms"]),
+    ...mapState(memberStore, ["userInfo", "isLogin"]),
     // sidos() {
     //   return this.$store.state.sidos;
     // },
@@ -92,11 +107,13 @@ export default {
       "getGugun",
       "getHouseList",
       "getDong",
+      "getCommList",
     ]),
     ...mapMutations(houseStore, [
       "CLEAR_SIDO_LIST",
       "CLEAR_GUGUN_LIST",
       "CLEAR_DONG_LIST",
+      "CLEAR_COMM_LIST",
     ]),
     // sidoList() {
     //   this.getSido();
@@ -112,6 +129,13 @@ export default {
       this.CLEAR_DONG_LIST();
       this.dongCode = null;
       if (this.gugunCode) this.getDong(this.gugunCode);
+    },
+    async commercialList() {
+      if (!this.memberchecked) {
+        this.CLEAR_COMM_LIST();
+      } else if (this.userInfo.dongCode) {
+        await this.getCommList(this.userInfo.dongCode);
+      }
     },
     searchApt() {
       if (this.dongCode) this.getHouseList(this.dongCode);

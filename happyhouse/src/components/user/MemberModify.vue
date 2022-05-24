@@ -181,6 +181,7 @@ export default {
     this.username = this.user.username;
     this.email = this.user.email;
     this.phone = this.user.phone;
+
     this.getSido();
     // console.log(this.user);
   },

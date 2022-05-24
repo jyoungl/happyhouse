@@ -19,10 +19,11 @@ export default {
       markers: [],
       subways: [],
       subwayMarkers: [],
+      commMarkers: [],
     };
   },
   computed: {
-    ...mapState(houseStore, ["house", "houses"]),
+    ...mapState(houseStore, ["house", "houses", "comms"]),
     // house() {
     //   return this.$store.state.house;
     // },
@@ -40,6 +41,12 @@ export default {
         this.moveMap(37.5643819, 126.9756308);
       }
     },
+    comms() {
+      this.initMap(this.houses[0].lat, this.houses[0].lng);
+      this.displayMarkerSubway();
+      this.displayMarker(this.houses);
+      this.displayMarkerComm();
+    },
   },
   mounted() {
     const script = document.createElement("script");
@@ -56,7 +63,7 @@ export default {
       const container = document.getElementById("map");
       const options = {
         center: new kakao.maps.LatLng(houselat, houselng),
-        level: 5,
+        level: 3,
       };
       //지도 객체를 등록합니다.
       //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
@@ -112,6 +119,37 @@ export default {
             infowindow.open(map, mks[i]);
             console.log(infowindow);
           });
+        }
+      }
+    },
+    displayMarkerComm() {
+      const markerPositions = [];
+      if (this.comms) {
+        this.comms.forEach((comm) => {
+          markerPositions.push([comm.lat, comm.lng]);
+        });
+      }
+      const positions = markerPositions.map(
+        (position) => new kakao.maps.LatLng(...position),
+      );
+
+      var imageSrc = require("@/assets/commercialIcon.png"), // 마커이미지의 주소입니다
+        imageSize = new kakao.maps.Size(50), // 마커이미지의 크기입니다
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      var markerImage = new kakao.maps.MarkerImage(
+        imageSrc,
+        imageSize,
+        imageOption,
+      );
+      var mks = [];
+      if (positions.length > 0) {
+        for (let i = 0, len = positions.length; i < len; i++) {
+          var marker = new kakao.maps.Marker({
+            map: this.map,
+            position: positions[i],
+            image: markerImage,
+          });
+          mks.push(marker);
         }
       }
     },

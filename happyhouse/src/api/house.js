@@ -19,8 +19,12 @@ function houseList(params, success, fail) {
   api.get(`apt`, { params: params }).then(success).catch(fail);
 }
 
+function commList(params, success, fail) {
+  api.get(`/shop/comm`, { params: params }).then(success).catch(fail);
+}
+
 function houseListByYear(params, success, fail) {
   api.get(`aptByDate`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, houseList, dongList, houseListByYear };
+export { sidoList, gugunList, houseList, dongList, houseListByYear, commList };
