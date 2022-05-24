@@ -7,8 +7,8 @@
       controls
       indicators
       background="#ababab"
-      img-width="1024"
-      img-height="480"
+      img-width="100%"
+      img-height="400"
       style="text-shadow: 1px 1px 2px #333"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
@@ -18,18 +18,30 @@
           <img
             class="d-block img-fluid w-100"
             width="1024"
-            height="480"
+            height="400"
             src="@/assets/happyhouse1.png"
+            alt="image slot"
+          />
+        </template>
+      </b-carousel-slide>
+
+      <b-carousel-slide>
+        <template #img>
+          <img
+            class="d-block img-fluid w-100"
+            width="1024"
+            height="400"
+            src="@/assets/happyhouse2.png"
             alt="image slot"
           />
         </template>
       </b-carousel-slide>
     </b-carousel>
 
-    <p class="mt-4">
+    <!-- <p class="mt-4">
       Slide #: {{ slide }}<br />
       Sliding: {{ sliding }}
-    </p>
+    </p> -->
   </div>
 </template>
 
@@ -51,3 +63,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.d-block {
+  height: 800px;
+}
+</style>
