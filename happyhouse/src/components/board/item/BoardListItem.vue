@@ -7,7 +7,6 @@
         >{{ subject }}</router-link
       >
     </b-th>
-    <b-td>{{ hit }}</b-td>
     <b-td>{{ userid }}</b-td>
     <b-td>{{ regtime | dateFormat }}</b-td>
   </b-tr>

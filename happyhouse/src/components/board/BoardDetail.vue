@@ -9,7 +9,10 @@
       <b-col class="text-left">
         <b-button variant="outline-primary" @click="listArticle">목록</b-button>
       </b-col>
-      <b-col class="text-right" v-if="userInfo.userid == article.userid">
+      <b-col
+        class="text-right"
+        v-if="userInfo.userid == article.userid || userInfo.userid == `admin`"
+      >
         <b-button
           variant="outline-info"
           size="sm"
@@ -44,7 +47,7 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col class="text-right" v-if="userInfo">
+      <b-col class="text-right" v-if="userInfo.userid == 'admin'">
         <b-button
           variant="outline-info"
           size="sm"

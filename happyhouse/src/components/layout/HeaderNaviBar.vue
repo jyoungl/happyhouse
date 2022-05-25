@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar toggleable="lg" type="light" class="shadow alert-secondary">
       <b-navbar-brand href="#">
         <router-link to="/">
           <img
@@ -17,15 +17,15 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'board' }" class="link"
-              ><b-icon icon="journal" font-scale="1.5"></b-icon>
-              Q&A</router-link
+            ><router-link :to="{ name: 'house' }" class="link text-dark"
+              ><b-icon icon="house-door" variant="dark" font-scale="2"></b-icon>
+              <strong> 아파트 정보</strong></router-link
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'house' }" class="link"
-              ><b-icon icon="journal" font-scale="1.5"></b-icon> 아파트
-              정보</router-link
+            ><router-link :to="{ name: 'board' }" class="link text-dark"
+              ><b-icon icon="journal" variant="dark" font-scale="2"></b-icon>
+              <strong> Q&A</strong></router-link
             ></b-nav-item
           >
         </b-navbar-nav>
@@ -43,7 +43,7 @@
           <b-nav-item class="align-self-center"
             ><router-link
               :to="{ name: 'mypage' }"
-              class="link align-self-center"
+              class="link align-self-center text-dark"
               >내정보보기</router-link
             ></b-nav-item
           >
@@ -56,7 +56,7 @@
         <b-navbar-nav class="ml-auto" v-else>
           <b-nav-item-dropdown right>
             <template #button-content>
-              <b-icon icon="people" font-scale="2"></b-icon>
+              <b-icon icon="people" variant="dark" font-scale="2"></b-icon>
             </template>
             <b-dropdown-item href="#"
               ><router-link :to="{ name: 'signUp' }" class="link"

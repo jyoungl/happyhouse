@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.User;
 import com.ssafy.happyhouse.model.service.MemberService;
+import com.ssafy.happyhouse.model.service.JwtService;
 import com.ssafy.happyhouse.model.service.JwtServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +46,7 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@Autowired
-	private JwtServiceImpl jwtService;
+	private JwtService jwtService;
 	
 	@GetMapping("/login")
 	public String login() {

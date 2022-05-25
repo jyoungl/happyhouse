@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      min: 2000,
+      min: 2014,
       max: 2023,
       range: [-20, 70],
     };

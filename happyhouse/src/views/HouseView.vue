@@ -1,6 +1,6 @@
 <template>
   <b-container fluid class="bexample-col text-center">
-    <b-row>
+    <b-row class="mt-1">
       <b-col cols="3">
         <b-row>
           <b-col align="left" class="mt-3 ml-3 bg-light">
@@ -23,7 +23,7 @@
         <house-map />
       </b-col>
     </b-row>
-    <div class="detail" v-if="house">
+    <div class="detail mt-8" v-if="house">
       <b-col class="ml-3 bg-light">
         <house-detail />
       </b-col>

@@ -7,11 +7,12 @@
     :class="{ 'mouse-over-bgcolor': isColor }"
   >
     <b-col cols="2" class="text-center align-self-center">
-      <b-img
-        thumbnail
-        src="https://picsum.photos/250/250/?image=58"
-        alt="Image 1"
-      ></b-img>
+      <b-icon
+        class="border rounded p-2"
+        icon="house-fill"
+        variant="dark"
+        font-scale="3"
+      ></b-icon>
     </b-col>
     <b-col cols="10" class="align-self-center">
       {{ house.aptName }}
