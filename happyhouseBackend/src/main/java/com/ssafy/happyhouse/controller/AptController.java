@@ -63,4 +63,5 @@ public class AptController {
 	public ResponseEntity<List<Subway>> subway(@RequestParam("dong") String dong) throws Exception {
 		return new ResponseEntity<List<Subway>>(aptService.getSubway(dong), HttpStatus.OK);
 	}
+
 }

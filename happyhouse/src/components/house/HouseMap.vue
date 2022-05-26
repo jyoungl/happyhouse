@@ -10,7 +10,6 @@
 import { mapState, mapActions } from "vuex";
 import axios from "axios";
 const houseStore = "houseStore";
-
 export default {
   name: "HouseMap",
   data() {

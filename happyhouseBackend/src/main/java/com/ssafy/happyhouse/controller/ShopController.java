@@ -35,11 +35,7 @@ public class ShopController {
 	
 //	@GetMapping(value = "/search")
 //	public 
-	
-	@GetMapping(value="/index")
-	public String index() {
-		return "index";
-	}
+
 	
 	@GetMapping("/sido")
 	@ResponseBody
